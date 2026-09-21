@@ -1,0 +1,32 @@
+{
+  "name": "node_telegram_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "bash scripts/ensure-services.sh",
+    "start": "node --env-file=.env src/index.ts",
+    "prestart:dev": "bash scripts/ensure-services.sh",
+    "start:dev": "node --env-file=.env --watch --inspect src/index.ts",
+    "premigrate": "bash scripts/ensure-services.sh",
+    "migrate": "node --env-file=.env -e \"import('./src/services/db/migrate.ts').then(m => m.runMigrations()).then(() => process.exit(0))\"",
+    "typecheck": "tsc",
+    "test": "node --test 'src/**/*.test.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "bullmq": "^6.3.4",
+    "ioredis": "^6.0.0",
+    "node-telegram-bot-api": "^0.67.0",
+    "openai": "^6.33.0",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.14",
+    "@types/pg": "^8.23.1",
+    "typescript": "^7.0.2"
+  }
+}
